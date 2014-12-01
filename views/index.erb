@@ -1,2 +1,46 @@
-<h1>Hello, World!</h1>
-Test web
+<!DOCTYPE html>
+<html>
+<body>
+  <div>
+    <h3>Expense form</h3>
+    <form method="post" actions="/">
+      <input type="number" name="amountx" placeholder="$"/>
+      <input type= "text" name="descriptionx" placeholder="Item Description" />
+      <input type= "date" name="datex" placeholder="Date" />
+      <input type= "tag" name="tagx" placeholder="Tag" />
+      <input type= "group" name="groupx" placeholder="Group" />
+      <input type="submit" value="Submit" />
+    </form>
+
+    <h3>Income form</h3>
+    <form method="post" actions="/">
+      <input type="number" name="amounti" placeholder="$"/>
+      <input type= "text" name="descriptioni" placeholder="Item Description" />
+      <input type= "date" name="datei" placeholder="Date" />
+      <input type= "tag" name="tagi" placeholder="Tag" />
+      <input type= "group" name="groupi" placeholder="Group" />
+      <input type="submit" value="Submit" />
+    </form>
+
+</div>
+<div>
+    <h3> Expense </h3>
+    <ul>
+      <% @exp.each do |exp| %>
+      <li><%=  exp.amount %></li>
+      <% end %>
+
+    </ul>
+</div>
+<div>
+  <h3> Income </h3>
+  <ul>
+    <% @inc.each do |inc| %>
+    <li><%=  inc.amount %></li>
+    <% end %>
+
+  </ul>
+</div>
+
+</body>
+</html>
