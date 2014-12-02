@@ -20,7 +20,7 @@ ActiveRecord::Base.establish_connection(
 
 get '/' do
 	@exp = Expenses.all.order("date")
-	@inc = Income.all.order("date")
+	@inc = Income.all.order("datei")
 	erb :index
 end
 
