@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141130023420) do
+ActiveRecord::Schema.define(version: 20141201182922) do
 
   create_table "expenses", force: true do |t|
     t.string "amount"
@@ -19,6 +19,14 @@ ActiveRecord::Schema.define(version: 20141130023420) do
     t.string "date"
     t.string "tag"
     t.string "group"
+  end
+
+  create_table "incomes", force: true do |t|
+    t.string "amounti"
+    t.string "descriptioni"
+    t.string "datei"
+    t.string "tagi"
+    t.string "groupi"
   end
 
 end

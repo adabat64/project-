@@ -1,6 +1,6 @@
-class CreateIncome < ActiveRecord::Migration
+class CreateIncomes < ActiveRecord::Migration
   def change
-    create_table :income do |t|
+    create_table :incomes do |t|
       t.string :amounti
       t.string :descriptioni
       t.string :datei
