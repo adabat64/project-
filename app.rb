@@ -1,25 +1,12 @@
-# app.rb
-# This is where all of the controller logic for our app goes.
-# Right now, it also handles reading the data from our text file "database"
-# and rending it to html, but we'll be changing that up next week.
 
-# use bundler
 require 'rubygems'
 require 'bundler/setup'
-# load all of the gems in the gemfile
+
 Bundler.require
 require './models/Income'
 require './models/User'
 
-# enable cookie-based sessions
 enable :sessions
-# set a secret used to encrypt the session cookie
-# NOTE: best practice would be to store this value in
-# an enviroment variable like ENV['SESSION_SECRET'] so
-# that it's not checked in with our source code. For
-# simplicity's sake, I'm not doing that here (but that means
-# that anyone who can see this source code would be able to
-# spoof cookies for this application)
 set :session_secret, '85txrIIvTDe0AWPCvbeXuXXpULCWZgpoRo1LqY8YsR9GAbph0jfOHosvtY4QFxi6'
 
 if ENV['DATABASE_URL']
@@ -32,57 +19,47 @@ else
   )
 end
 
-# Here we use the filters feature of Sinatra to run some
-# code before EVERY route in the app. Notice that we are
-# populating an instance (@) variable with the user -
-# this is necesary to allow the user variable to be
-# accessed in the other routes
 before do
   @user = User.find_by(name: session[:name])
 end
 
-# We can now show a login page at / for logged-out
-# visitors, and show a list of todos at / for logged-in
-# visitors!
 get '/' do
   if @user
     @income_items = @user.incomes.order(:from)
     erb :main_page
   else
-    erb :login
+    erb :signup
   end
 end
 
-# Out login callback will recieve the submissions from
-# the login form.
+get '/login' do
+  erb :login
+end
+
+get '/signup' do
+  erb :signup
+end
+
 post '/login' do
-  # Get a handle to a user with a name that matches the
-  # submitted username. Returns nil if no such user
-  # exists
+
   user = User.find_by(name: params[:name])
 
   if user.nil?
-    # first, we check if the user is in our database
-    @message = "User not found."
+
+    @message = "Your username was not found."
     erb :message_page
 
   elsif user.authenticate(params[:password])
-    # if they are, we check if their password is valid,
-    # then actually log in the user by setting a session
-    # cookie to their username
+
     session[:name] = user.name
     redirect '/'
 
   else
-    # if the password doesn't match our stored hash,
-    # show a nice error page
-    @message = "Incorrect password."
+    @message = "You might have the wrong password."
     erb :message_page
   end
 end
 
-# Our logout link simply deletes the session cookie and
-# redirects the (now logged-out) user to the login page
 get '/logout' do
   session.clear
   redirect '/'
