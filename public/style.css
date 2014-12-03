@@ -1,0 +1,20 @@
+/*
+ * Example CSS to style the todo list. This is OPTIONAL for Lab 0,
+ * but will go a long way towards making your project look prettier.
+ */
+html {
+	min-height: 100%;
+}
+
+body {
+	min-height: 100%;
+	background-color: #34495e;
+}
+
+h1 {
+	color: #FFF;
+}
+
+.btn.complete {
+  margin-right: 10px;
+}

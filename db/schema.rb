@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,22 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141201182922) do
-
-  create_table "expenses", force: true do |t|
-    t.string "amount"
-    t.string "description"
-    t.string "date"
-    t.string "tag"
-    t.string "group"
-  end
+ActiveRecord::Schema.define(version: 20141203024804) do
 
   create_table "incomes", force: true do |t|
-    t.string "amounti"
-    t.string "descriptioni"
-    t.string "datei"
-    t.string "tagi"
-    t.string "groupi"
+    t.string  "amount_in"
+    t.string  "from"
+    t.string  "received_on"
+    t.string  "tagged_to"
+    t.string  "grouped_with"
+    t.integer "user_id"
+  end
+
+  create_table "todo_items", force: true do |t|
+    t.string  "description"
+    t.string  "due"
+    t.integer "user_id"
+  end
+
+  create_table "users", force: true do |t|
+    t.string "name"
+    t.string "password_digest"
   end
 
 end

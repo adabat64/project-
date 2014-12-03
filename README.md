@@ -1,1 +1,4 @@
-This web application will soon be updated
+$Project
+
+This repository contains a project currently in development.
+  PLEASE AWAIT FURTHER DEVELOPMENT
