@@ -1,7 +1,7 @@
-class CreateIncomes < ActiveRecord::Migration
+class CreateExpenses < ActiveRecord::Migration
   def change
-    create_table :incomes do |t|
-      t.string :amount_in
+    create_table :expenses do |t|
+      t.string :amount_exp
       t.string :from
       t.string :received_on
       t.string :tagged_to
