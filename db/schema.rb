@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141203163118) do
+ActiveRecord::Schema.define(version: 20141204010741) do
+
+  create_table "budgets", force: true do |t|
+    t.string  "amount_bud"
+    t.string  "from"
+    t.integer "user_id"
+  end
 
   create_table "expenses", force: true do |t|
     t.string  "amount_exp"
@@ -19,6 +25,7 @@ ActiveRecord::Schema.define(version: 20141203163118) do
     t.string  "tagged_to"
     t.string  "grouped_with"
     t.integer "user_id"
+    t.integer "budget_id"
   end
 
   create_table "incomes", force: true do |t|

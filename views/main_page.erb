@@ -1,18 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Project$</title>
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-  <link rel='stylesheet' type='text/css' href='/style.css'>
-</head>
-
-<body>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-8">
-
 <h1>Welcome <%= @user.name %> </h1>
 
 <div class="list-group">
@@ -28,9 +13,6 @@
   </div>
   <% end %>
 </div>
-</div>
-
-<div class="col-md-4">
 
 <div class="list-group">
   <h4>Expense</h4>
@@ -46,6 +28,15 @@
   <% end %>
 </div>
 
+<div class="list-group">
+  <h4>Budgets</h4>
+  <% @budget_items.each do |bud| %>
+  <div class="list-group-item">
+    <a href='/delete_budget_item/<%= bud.id %>' class="btn btn-sm btn-default complete"><span class="glyphicon glyphicon-ok"> </span></a>
+    <%= bud.amount_bud %>
+    <%= bud.from %>
+  </div>
+  <% end %>
 </div>
 
 <h4 class="list-group-item-heading">Add New <a style="text-decoration: underline" href='/new_transaction'>Transaction</a></h4>

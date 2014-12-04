@@ -6,6 +6,7 @@ Bundler.require
 require './models/Income'
 require './models/User'
 require './models/Expense'
+require './models/Budget'
 
 enable :sessions
 set :session_secret, '85txrIIvTDe0AWPCvbeXuXXpULCWZgpoRo1LqY8YsR9GAbph0jfOHosvtY4QFxi6'
@@ -28,6 +29,7 @@ get '/' do
   if @user
     @income_items = @user.incomes.order(:from)
     @expense_items  = @user.expenses.order(:from)
+    @budget_items =@user.budgets.order(:from)
     erb :main_page
   else
     erb :signup
@@ -97,6 +99,11 @@ post '/new_expense' do
   redirect"/"
 end
 
+post '/new_budget' do
+  @user.budgets.create(amount_bud: params[:bud_money], from: params[:bud_description])
+  redirect "/"
+end
+
 get '/delete_user' do
   @user.destroy
   redirect '/'
@@ -113,5 +120,12 @@ get '/delete_income_item/:inc' do
   @income = Income.find(params[:inc])
   @user = @income.user
   @income.destroy
-  redirect "/"
+  redirect '/'
+end
+
+get '/delete_budget_item/:bud' do
+  @budget = Budget.find(params[:bud])
+  @user = @budget.user
+  @budget.destroy
+  redirect '/'
 end

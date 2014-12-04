@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
 
   has_many :incomes, dependent: :destroy
   has_many :expenses, dependent: :destroy
+  has_many :budgets, dependent: :destroy
 
   # add the methods for secure password authentication
   has_secure_password
