@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20141204010741) do
   create_table "budgets", force: true do |t|
     t.string  "amount_bud"
     t.string  "from"
+    t.string  "total_left"
     t.integer "user_id"
   end
 

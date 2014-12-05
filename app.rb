@@ -25,16 +25,19 @@ before do
   @user = User.find_by(name: session[:name])
 end
 
+
 get '/' do
+
   if @user
     @income_items = @user.incomes.order(:from)
-    @expense_items  = @user.expenses.order(:from)
+    @expense_items = @user.expenses.order(:from)
     @budget_items =@user.budgets.order(:from)
     erb :main_page
   else
     erb :signup
   end
 end
+
 
 get '/login' do
   erb :login
@@ -88,20 +91,21 @@ end
 
 
 
-
 post '/new_income' do
   @user.incomes.create(amount_in: params[:money], from: params[:description], received_on: params[:date], tagged_to: params[:tag], grouped_with: params[:group])
-  redirect"/"
+  redirect '/'
 end
 
 post '/new_expense' do
   @user.expenses.create(amount_exp: params[:exp_money], from: params[:exp_description], received_on: params[:exp_date], tagged_to: params[:exp_tag], grouped_with: params[:exp_group])
-  redirect"/"
+  redirect '/'
 end
+
+
 
 post '/new_budget' do
   @user.budgets.create(amount_bud: params[:bud_money], from: params[:bud_description])
-  redirect "/"
+  redirect '/'
 end
 
 get '/delete_user' do
@@ -113,7 +117,7 @@ get '/delete_expense_item/:exp' do
   @expense = Expense.find(params[:exp])
   @user = @expense.user
   @expense.destroy
-  redirect'/'
+  redirect '/'
 end
 
 get '/delete_income_item/:inc' do

@@ -4,11 +4,11 @@
   <h4>Income</h4>
   <% @income_items.each do |inc| %>
   <div class="list-group-item">
-    <a href='/delete_income_item/<%= inc.id %>' class="btn btn-sm btn-default complete"><span class="glyphicon glyphicon-ok"> </span></a>
+    <a href='/delete_income_item/<%= inc.id %>' class="btn btn-sm btn-default complete"><span class="glyphicon glyphicon-remove"> </span></a>
     <%= inc.amount_in %>
     <%= inc.from %>
     <%= inc.received_on %>
-    <%= inc.tagged_to %>
+    <!-- <%= inc.tagged_to %> -->
     <%= inc.grouped_with %>
   </div>
   <% end %>
@@ -18,12 +18,12 @@
   <h4>Expense</h4>
   <% @expense_items.each do |exp| %>
   <div class="list-group-item">
-    <a href='/delete_expense_item/<%= exp.id %>' class="btn btn-sm btn-default complete"><span class="glyphicon glyphicon-ok"> </span></a>
+    <a href='/delete_expense_item/<%= exp.id %>' class="btn btn-sm btn-default complete"><span class="glyphicon glyphicon-remove"> </span></a>
     <%= exp.amount_exp %>
     <%= exp.from %>
     <%= exp.received_on %>
-    <%= exp.tagged_to %>
     <%= exp.grouped_with %>
+  <ul>Tag: <%= exp.tagged_to %></ul>
   </div>
   <% end %>
 </div>
@@ -32,12 +32,16 @@
   <h4>Budgets</h4>
   <% @budget_items.each do |bud| %>
   <div class="list-group-item">
-    <a href='/delete_budget_item/<%= bud.id %>' class="btn btn-sm btn-default complete"><span class="glyphicon glyphicon-ok"> </span></a>
-    <%= bud.amount_bud %>
-    <%= bud.from %>
+    <a href='/delete_budget_item/<%= bud.id %>' class="btn btn-sm btn-default complete"><span class="glyphicon glyphicon-remove"> </span></a>
+    <ul>Budget: <%= bud.from %></ul>
+    <ul>Amount: <%= bud.amount_bud %> $</ul>
+    <ul>Balance: <%= bud.total_left %> </ul>
+    <!-- <ul><%= bud.id %></ul> -->
   </div>
   <% end %>
 </div>
+
+
 
 <h4 class="list-group-item-heading">Add New <a style="text-decoration: underline" href='/new_transaction'>Transaction</a></h4>
 
